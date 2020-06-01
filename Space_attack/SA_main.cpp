@@ -30,7 +30,6 @@ int main()
             sf::Time elapsed = clock.restart();
             player1.animate(elapsed);
 
-
             // DRAW
             window.clear(sf::Color::Black);
             window.draw(player1);
