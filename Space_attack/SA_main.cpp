@@ -15,6 +15,7 @@ int main()
         Player player1(sf::Vector2f (40.0, 20.0), sf::Vector2f(window.getSize().x/2,window.getSize().y-(window.getSize().y/20)));
         sf::Clock clock;
         player1.setBounds(0,window.getSize().x);
+        player1.setSpeed(200);
 
 
         while (window.isOpen()) {
