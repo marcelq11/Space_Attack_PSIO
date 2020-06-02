@@ -6,6 +6,7 @@ CONFIG -= qt
 SOURCES += \
     SA_main.cpp \
     bullet.cpp \
+    enemy.cpp \
     player.cpp
 
 INCLUDEPATH += "C:/SFML-2.5.1/include"
@@ -20,4 +21,5 @@ CONFIG(debug, debug|release){
 HEADERS += \
     bullet.h \
     customrectangleshape.h \
+    enemy.h \
     player.h

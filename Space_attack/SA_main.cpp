@@ -7,20 +7,24 @@
 #include <time.h>
 
 #include "player.h"
+#include "bullet.h"
+#include "enemy.h"
+
 
 int main()
 {
         sf::RenderWindow window(sf::VideoMode(800, 600), "My window");
-        window.setFramerateLimit(60);
-        Player player1(sf::Vector2f (40.0, 20.0), sf::Vector2f(window.getSize().x/2,window.getSize().y-(window.getSize().y/20)));
+        window.setFramerateLimit(5);
+        Player player(sf::Vector2f (40.0, 20.0), sf::Vector2f(window.getSize().x/2,window.getSize().y-(window.getSize().y/20)));
+        std::vector<Bullet> bulletVec;
+        player.setBounds(0,window.getSize().x);
+        player.setSpeed(200);
+
         sf::Clock clock;
-        player1.setBounds(0,window.getSize().x);
-        player1.setSpeed(200);
-
-
         while (window.isOpen()) {
             // EVENTS
             sf::Event event;
+            sf::Time elapsed = clock.restart();
             while (window.pollEvent(event)) {
                 if (event.type == sf::Event::Closed)
                     window.close();
@@ -28,12 +32,20 @@ int main()
             // LOGIC
             window.clear(sf::Color::Black);
 
-            sf::Time elapsed = clock.restart();
-            player1.animate(elapsed);
+            player.animate(elapsed);
+
+            Bullet bullet(sf::Vector2f(2,30),sf::Vector2f((player.getLeft()+player.getRight())/2,player.getTop()));
+            bullet.setSpeed(-300);
+            bulletVec.push_back(bullet);
 
             // DRAW
-            window.clear(sf::Color::Black);
-            window.draw(player1);
+            for(int i = 0; i < (int)bulletVec.size(); i++)
+            {
+                bulletVec[i].animate(elapsed);
+                window.draw(bulletVec[i]);
+            }
+            window.draw(player);
+            window.draw(bullet);
 
 
             window.display();
