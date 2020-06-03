@@ -38,13 +38,17 @@ int main()
     Player player(sf::Vector2f(window.getSize().x/2,window.getSize().y-(window.getSize().y/12)));
     player.setTexture(*TextureManager::getTexture("Player1"));
     player.setScale(0.5,0.5);
-    player.setBounds(0,window.getSize().x);
-    player.setSpeed(200);
+    player.setBounds(0,window.getSize().x,0,window.getSize().y);
+    player.setSpeed(200,200);
 
     ////Enemies
-    Enemy enemy1(sf::Vector2f(400,30));
-    enemy1.setTexture(*TextureManager::getTexture("Enemy"));
-    enemy1.setScale(0.5,0.5);
+    std::vector<Enemy> enemyVec;
+    enemyVec.push_back(Enemy(sf::Vector2f(400,30),4));
+    enemyVec[0].setTexture(*TextureManager::getTexture("Enemy"));
+    enemyVec[0].setScale(0.5,0.5);
+    enemyVec.push_back(Enemy(sf::Vector2f(100,30),5));
+    enemyVec[1].setTexture(*TextureManager::getTexture("Enemy"));
+    enemyVec[1].setScale(0.5,0.5);
 
     ////Bullet
     std::vector<Bullet> bulletVec;
@@ -64,12 +68,31 @@ int main()
 
         if (delay.getElapsedTime().asMilliseconds()>200) {
 
-                    Bullet bullet(sf::Vector2f((player.getLeft()+player.getRight())/2,(player.getTop()-15)));
-                    bullet.setSpeed(-300);
-                    bullet.setScale(0.5,0.5);
-                    bullet.setTexture(*TextureManager::getTexture("LaserG"));
-                    bulletVec.push_back(bullet);
-                    delay.restart();
+            Bullet bullet(sf::Vector2f((player.getLeft()+player.getRight())/2,(player.getTop()-15)));
+            bullet.setSpeed(-300);
+            bullet.setScale(0.5,0.5);
+            bullet.setTexture(*TextureManager::getTexture("LaserG"));
+            bulletVec.push_back(bullet);
+            delay.restart();
+
+        }
+
+        for(int i = 0; i < (int)bulletVec.size(); i++){
+            sf::FloatRect bullet = bulletVec[i].getGlobalBounds();
+            if(!enemyVec.empty()){
+                if(enemyVec[0].colision(bullet))
+                {
+                    bulletVec.erase(bulletVec.begin()+i);
+                    //enemyVec[0].setPosition(123123,12312);
+                    enemyVec.shrink_to_fit();
+                }
+            }
+        }
+
+        for(int i = 0; i < (int)enemyVec.size(); i++){
+            if(!enemyVec[i].getHp()){
+                enemyVec.erase(enemyVec.begin()+i);
+            }
         }
 
     // DRAW
@@ -82,15 +105,16 @@ int main()
             bulletVec.erase(bulletVec.begin()+i);
         }
     }
+    if(!enemyVec.empty()){
+        for(auto &s : enemyVec){
+            window.draw(s);
+        }
+    }
 
     window.draw(player);
-    window.draw(enemy1);
 
     window.display();
     }
-
-
-
 
     return 0;
 }
