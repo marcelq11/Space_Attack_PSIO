@@ -14,3 +14,4 @@ void Bullet::animate(const sf::Time &elapsed)
 {
     move(0,speed_y_*elapsed.asSeconds());
 }
+

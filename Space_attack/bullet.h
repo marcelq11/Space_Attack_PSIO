@@ -6,6 +6,7 @@
 class Bullet: public sf::RectangleShape
 {
 public:
+    int shoot_timer_ = 0;
     Bullet(sf::Vector2f size, sf::Vector2f position);
 
     void setSpeed(int speed_y);

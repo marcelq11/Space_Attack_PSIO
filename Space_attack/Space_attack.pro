@@ -7,6 +7,7 @@ SOURCES += \
     SA_main.cpp \
     bullet.cpp \
     enemy.cpp \
+    other.cpp \
     player.cpp
 
 INCLUDEPATH += "C:/SFML-2.5.1/include"
@@ -22,4 +23,5 @@ HEADERS += \
     bullet.h \
     customrectangleshape.h \
     enemy.h \
+    other.h \
     player.h
