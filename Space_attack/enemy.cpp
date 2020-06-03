@@ -1,6 +1,6 @@
 #include "enemy.h"
 
-Enemy::Enemy()
+Enemy::Enemy(sf::Vector2f position)
 {
-
+setPosition(position);
 }

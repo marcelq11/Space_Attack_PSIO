@@ -8,7 +8,8 @@ SOURCES += \
     bullet.cpp \
     enemy.cpp \
     other.cpp \
-    player.cpp
+    player.cpp \
+    texturemanager.cpp
 
 INCLUDEPATH += "C:/SFML-2.5.1/include"
 
@@ -24,4 +25,5 @@ HEADERS += \
     customrectangleshape.h \
     enemy.h \
     other.h \
-    player.h
+    player.h \
+    texturemanager.h

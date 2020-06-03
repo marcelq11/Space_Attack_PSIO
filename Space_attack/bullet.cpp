@@ -1,6 +1,6 @@
 #include "bullet.h"
 
-Bullet::Bullet(sf::Vector2f size, sf::Vector2f position): sf::RectangleShape(size)
+Bullet::Bullet( sf::Vector2f position)
 {
 setPosition(position);
 }

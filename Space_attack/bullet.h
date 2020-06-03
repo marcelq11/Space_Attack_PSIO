@@ -3,11 +3,11 @@
 
 #include <SFML/Graphics.hpp>
 
-class Bullet: public sf::RectangleShape
+class Bullet: public sf::Sprite
 {
 public:
     int shoot_timer_ = 0;
-    Bullet(sf::Vector2f size, sf::Vector2f position);
+    Bullet(sf::Vector2f position);
 
     void setSpeed(int speed_y);
     void animate(const sf::Time &elapsed);

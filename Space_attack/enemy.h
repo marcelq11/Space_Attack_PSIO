@@ -3,10 +3,10 @@
 
 #include <SFML/Graphics.hpp>
 
-class Enemy: public sf::RectangleShape
+class Enemy: public sf::Sprite
 {
 public:
-    Enemy();
+    Enemy(sf::Vector2f position);
 };
 
 #endif // ENEMY_H

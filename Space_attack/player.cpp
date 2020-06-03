@@ -2,7 +2,7 @@
 
 
 
-Player::Player(sf::Vector2f size,sf::Vector2f position): sf::RectangleShape(size)
+Player::Player(sf::Vector2f position)
 {
 setPosition(position);
 }
