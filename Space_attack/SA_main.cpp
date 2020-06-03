@@ -19,7 +19,7 @@ int main()
     TextureManager::loadTexture("Back1","Textures/back1.png");
     TextureManager::loadTexture("Player1","Textures/player.png");
     TextureManager::loadTexture("LaserG","Textures/laserGreen.png");
-    TextureManager::loadTexture("Enemy","Textures/enemyUFO.png");
+    TextureManager::loadTexture("Enemy","Textures/enemyShip.png");
 
     //////
     sf::RenderWindow window(sf::VideoMode(800, 600), "My window");
