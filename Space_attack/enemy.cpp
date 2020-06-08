@@ -21,3 +21,21 @@ int Enemy::getHp()
 {
     return hp_;
 }
+
+int Enemy::getLeft()
+{
+    sf::FloatRect enemy = getGlobalBounds();
+    return enemy.left;
+}
+
+int Enemy::getRight()
+{
+    sf::FloatRect enemy = getGlobalBounds();
+    return enemy.left + enemy.width;
+}
+
+int Enemy::getBottom()
+{
+    sf::FloatRect enemy = getGlobalBounds();
+    return enemy.top + enemy.height;
+}

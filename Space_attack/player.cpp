@@ -2,9 +2,10 @@
 
 
 
-Player::Player(sf::Vector2f position)
+Player::Player(sf::Vector2f position, int hp)
 {
 setPosition(position);
+hp_ = hp;
 }
 
 void Player::animate(const sf::Time &elapsed)
@@ -37,10 +38,27 @@ void Player::setBounds(int left, int right , int top ,int bottom)
     bottom_bound_ = bottom;
 }
 
+bool Player::collision(sf::FloatRect position)
+{
+    if(getGlobalBounds().intersects(position))
+    {
+        return true;
+    }
+    return false;
+}
+
 void Player::setSpeed(int speed_x ,int speed_y)
 {
     speed_x_=speed_x;
     speed_y_=speed_y;
+}
+void Player::setShoot_fr(float fr)
+{
+    shoot_fr_ = fr;
+}
+float Player::getShoot_fr()
+{
+    return shoot_fr_;
 }
 
 int Player::getLeft()

@@ -6,6 +6,7 @@ CONFIG -= qt
 SOURCES += \
     SA_main.cpp \
     bullet.cpp \
+    drop.cpp \
     enemy.cpp \
     other.cpp \
     player.cpp \
@@ -23,6 +24,7 @@ CONFIG(debug, debug|release){
 HEADERS += \
     bullet.h \
     customrectangleshape.h \
+    drop.h \
     enemy.h \
     other.h \
     player.h \

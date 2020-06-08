@@ -6,6 +6,7 @@
 #include <SFML/Graphics.hpp>
 
 
-sf::Texture Load_texture(std::string path);
+
+
 
 #endif // OTHER_H

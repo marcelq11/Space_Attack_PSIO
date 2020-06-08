@@ -6,7 +6,6 @@
 class Bullet: public sf::Sprite
 {
 public:
-    int shoot_timer_ = 0;
     Bullet(sf::Vector2f position);
 
     void setSpeed(int speed_y);
@@ -14,5 +13,6 @@ public:
 
 private:
     int speed_y_ = 0;
+    int bullet_fr_ = 0;
 };
 #endif // BULLET_H

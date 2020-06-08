@@ -9,8 +9,14 @@ public:
     Enemy(sf::Vector2f position,int hp);
     bool colision(sf::FloatRect &bullet);
     int getHp();
+    int getRight();
+    int getLeft();
+    int getBottom();
 private:
     int hp_ = 1;
+    int left_bound_ = 0;
+    int right_bound_ = 0;
+    int bottom_bound_ = 0;
 };
 
 #endif // ENEMY_H
