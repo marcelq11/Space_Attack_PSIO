@@ -17,9 +17,25 @@ bool Enemy::colision(sf::FloatRect &bullet)
     return false;
 
 }
+
+void Enemy::animate(const sf::Time &elapsed)
+{
+    move(speed_x_*elapsed.asSeconds(),0);
+}
+
+void Enemy::setSpeed(int speed_x)
+{
+  speed_x_=speed_x;
+}
+
 int Enemy::getHp()
 {
     return hp_;
+}
+
+int Enemy::getSpeed()
+{
+    return speed_x_;
 }
 
 int Enemy::getLeft()
@@ -38,4 +54,14 @@ int Enemy::getBottom()
 {
     sf::FloatRect enemy = getGlobalBounds();
     return enemy.top + enemy.height;
+}
+
+bool Enemy::bound_collision(float left, float right)
+{
+    if(getLeft()<=left||getRight()>=right)
+    {
+        return true;
+    }
+    return false;
+
 }
