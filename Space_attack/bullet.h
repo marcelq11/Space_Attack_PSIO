@@ -10,9 +10,11 @@ public:
 
     void setSpeed(int speed_y);
     void animate(const sf::Time &elapsed);
+    void setDmg(int dmg);
+    int getDmg();
 
 private:
     int speed_y_ = 0;
-    int bullet_fr_ = 0;
+    int dmg_ = 1;
 };
 #endif // BULLET_H

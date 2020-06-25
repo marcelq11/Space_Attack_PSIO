@@ -7,7 +7,7 @@ class Enemy: public sf::Sprite
 {
 public:
     Enemy(sf::Vector2f position,int hp);
-    bool colision(sf::FloatRect &bullet);
+    bool colision(sf::FloatRect &bullet, int dmg);
     void animate(const sf::Time &elapsed);
     void setSpeed(int speed_x);
     bool bound_collision(float, float);

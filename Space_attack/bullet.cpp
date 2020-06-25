@@ -14,4 +14,12 @@ void Bullet::animate(const sf::Time &elapsed)
 {
     move(0,speed_y_*elapsed.asSeconds());
 }
+void Bullet::setDmg(int dmg)
+{
+    dmg_ = dmg;
+}
 
+int Bullet::getDmg()
+{
+    return dmg_;
+}

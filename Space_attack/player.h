@@ -17,6 +17,9 @@ public:
     int getRight();
     int getLeft();
     int getTop();
+    void iShoot_pattern(int i);
+    int getShoot_pattern();
+    int getHp();
 
 
 
@@ -28,6 +31,7 @@ private:
     int speed_x_ = 0;
     int speed_y_ = 0;
     float shoot_fr_ = 0;
+    int shoot_pattern_ = 0;
     int hp_ = 1;
 };
 

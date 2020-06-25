@@ -7,11 +7,11 @@ Enemy::Enemy(sf::Vector2f position,int hp)
 setPosition(position);
 hp_=hp;
 }
-bool Enemy::colision(sf::FloatRect &bullet)
+bool Enemy::colision(sf::FloatRect &bullet, int dmg)
 {
     if(getGlobalBounds().intersects(bullet))
     {
-        hp_--;
+        hp_ -= dmg;
         return true;
     }
     return false;

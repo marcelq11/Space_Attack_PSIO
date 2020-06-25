@@ -79,3 +79,18 @@ int Player::getTop()
     return player.top;
 }
 
+int Player::getHp()
+{
+    return hp_;
+}
+
+int Player::getShoot_pattern()
+{
+    return shoot_pattern_;
+}
+
+void Player::iShoot_pattern(int i)
+{
+    shoot_pattern_+=i;
+}
+
