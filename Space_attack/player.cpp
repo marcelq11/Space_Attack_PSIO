@@ -1,7 +1,6 @@
 #include "player.h"
 
 
-
 Player::Player(sf::Vector2f position, int hp)
 {
 setPosition(position);
@@ -84,6 +83,11 @@ int Player::getHp()
     return hp_;
 }
 
+void Player::setHp(int i)
+{
+    hp_-=i;
+}
+
 int Player::getShoot_pattern()
 {
     return shoot_pattern_;
@@ -92,5 +96,15 @@ int Player::getShoot_pattern()
 void Player::iShoot_pattern(int i)
 {
     shoot_pattern_+=i;
+}
+
+void Player::setPoint(int i)
+{
+    points_+=i;
+}
+
+int Player::getPoint()
+{
+    return points_;
 }
 

@@ -20,6 +20,9 @@ public:
     void iShoot_pattern(int i);
     int getShoot_pattern();
     int getHp();
+    void setHp(int i);
+    void setPoint(int i);
+    int getPoint();
 
 
 
@@ -33,6 +36,7 @@ private:
     float shoot_fr_ = 0;
     int shoot_pattern_ = 0;
     int hp_ = 1;
+    int points_ = 0;
 };
 
 #endif // PLAYER_H

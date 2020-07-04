@@ -5,6 +5,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include <string>
 
 #include "bullet.h"
 #include "drop.h"
@@ -16,6 +17,7 @@
 
 int main()
 {
+    int cycle = 1;
     //TextureLoad
     TextureManager::loadTexture("Back1","Textures/back1.png");
     TextureManager::loadTexture("Player1","Textures/player.png");
@@ -23,7 +25,11 @@ int main()
     TextureManager::loadTexture("LaserG2","Textures/laserGreen02.png");
     TextureManager::loadTexture("LaserR","Textures/laserRed.png");
     TextureManager::loadTexture("Enemy","Textures/enemyShip.png");
-    TextureManager::loadTexture("Drop","Textures/powerupRed_bolt.png");
+    TextureManager::loadTexture("Drop1","Textures/drop1.png");
+    TextureManager::loadTexture("Drop2","Textures/drop2.png");
+    TextureManager::loadTexture("Drop3","Textures/drop3.png");
+    TextureManager::loadTexture("Drop4","Textures/drop4.png");
+    TextureManager::loadTexture("Drop5","Textures/drop5.png");
     TextureManager::loadTexture("Frame","Textures/buttonRed.png");
     TextureManager::loadTexture("Life","Textures/playerLife2_red.png");
 
@@ -43,7 +49,7 @@ int main()
 
     //Objects
     ////Player
-    Player player(sf::Vector2f(window.getSize().x/2,window.getSize().y-(window.getSize().y/12)),1);
+    Player player(sf::Vector2f(window.getSize().x/2,window.getSize().y-(window.getSize().y/12)),5);
     player.setTexture(*TextureManager::getTexture("Player1"));
     player.setScale(0.5,0.5);
     player.setBounds(0,window.getSize().x,0,window.getSize().y);
@@ -72,12 +78,8 @@ int main()
 
     ////Drops
     std::vector<Drop> dropVec;
-    Drop drop(sf::Vector2f(400,300));
-    drop.setTexture(*TextureManager::getTexture("Drop"));
-    drop.setScale(0.7,0.7);
 
     ////HealthBar
-
     std::vector<sf::Sprite> lifeVec;
     for(int i = 0 ; i < 5 ; i++){
         sf::Sprite life;
@@ -86,6 +88,18 @@ int main()
         life.setScale(0.7,0.7);
         lifeVec.emplace_back(life);
 }
+
+    sf::Font myFont;
+
+    if(!myFont.loadFromFile("Fonts/arial.ttf"))
+    {
+        std::cout<<"ERROR"<<std::endl;
+    }
+    sf::Text text;
+    text.setFont(myFont);
+    text.setPosition(window.getSize().x - 120,0);
+    text.setScale(0.5,0.5);
+
 
 
     while (window.isOpen()) {
@@ -173,16 +187,62 @@ int main()
             }
         }
 
-        ////Drop
+        ////Drop & enemy erase & enemy fill vector
         for(int i = 0; i < (int)enemyVec.size(); i++){
                 if(enemyVec[i].getHp()<1){
-                    if(rand()%100 < 10)
+                    if(rand()%10 < 1)
                     {
-                        Drop drop(sf::Vector2f(enemyVec[i].getPosition()));
-                        drop.setTexture(*TextureManager::getTexture("Drop"));
-                        drop.setScale(0.7,0.7);
-                        dropVec.push_back(drop);
+                        switch(rand()%5+1)
+                        {
+                            case 1:
+                            {
+                                Drop drop(sf::Vector2f(enemyVec[i].getPosition()));
+                                drop.setTexture(*TextureManager::getTexture("Drop1"));
+                                drop.setdrop_number(1);
+                                drop.setScale(0.7,0.7);
+                                dropVec.push_back(drop);
+                                break;
+                            }
+                            case 2:
+                            {
+                                Drop drop(sf::Vector2f(enemyVec[i].getPosition()));
+                                drop.setTexture(*TextureManager::getTexture("Drop2"));
+                                drop.setdrop_number(2);
+                                drop.setScale(0.7,0.7);
+                                dropVec.push_back(drop);
+                                break;
+                            }
+                            case 3:
+                            {
+                                Drop drop(sf::Vector2f(enemyVec[i].getPosition()));
+                                drop.setTexture(*TextureManager::getTexture("Drop3"));
+                                drop.setdrop_number(3);
+                                drop.setScale(0.7,0.7);
+                                dropVec.push_back(drop);
+                                break;
+                            }
+                            case 4:
+                            {
+                                Drop drop(sf::Vector2f(enemyVec[i].getPosition()));
+                                drop.setTexture(*TextureManager::getTexture("Drop4"));
+                                drop.setdrop_number(4);
+                                drop.setScale(0.7,0.7);
+                                dropVec.push_back(drop);
+                                break;
+                            }
+                            case 5:
+                            {
+                                Drop drop(sf::Vector2f(enemyVec[i].getPosition()));
+                                drop.setTexture(*TextureManager::getTexture("Drop5"));
+                                drop.setdrop_number(5);
+                                drop.setScale(0.7,0.7);
+                                dropVec.push_back(drop);
+                                break;
+                            }
+                        }
+
                     }
+                    player.setPoint(10);
                     enemyVec.erase(enemyVec.begin()+i);
                 }
             }
@@ -191,6 +251,22 @@ int main()
             dropVec[i].animate(elapsed);
             if(dropVec[i].getPosition().y > window.getSize().y){
                 dropVec.erase(dropVec.begin()+i);
+            }
+        }
+
+        if(enemyVec.empty())
+        {
+            cycle++;
+            for (int i = 0; i<7; i++)
+            {
+                    for(int k=0; k<4; k++)
+                    {
+                    Enemy enemy(sf::Vector2f(((window.getSize().x-7*70)/2)+(i*70),30+k*70));
+                    enemy.setHp(cycle*2);
+                    enemy.setTexture(*TextureManager::getTexture("Enemy"));
+                    enemy.setScale(0.5,0.5);
+                    enemyVec.emplace_back(enemy);
+                    }
             }
         }
 
@@ -207,6 +283,28 @@ int main()
                 }
             }
         }
+
+        ////Enemy bullet collision and player collision
+        for(int i = 0 ; i < (int)bulletEnemyVec.size() ; i++)
+        {
+            sf::FloatRect bullet = bulletEnemyVec[i].getGlobalBounds();
+            if(player.collision(bullet))
+            {
+                player.setHp(1);
+                bulletEnemyVec.erase(bulletEnemyVec.begin()+i);
+            }
+        }
+        for(int i = 0 ; i < (int)enemyVec.size() ; i++)
+        {
+            sf::FloatRect enemy = enemyVec[i].getGlobalBounds();
+            if(player.collision(enemy))
+            {
+                player.setHp(1);
+                enemyVec.erase(enemyVec.begin()+i);
+            }
+        }
+        ////Score
+        text.setString("Score: " +to_string(player.getPoint()));
 
         // DRAW
         window.draw(back);
@@ -248,12 +346,19 @@ int main()
             }
         }
         ////Other
-        for(auto &s:lifeVec){
-            window.draw(s);
+        for(int i = 0 ; i < player.getHp() ; i++){
+            window.draw(lifeVec[i]);
         }
 
         window.draw(player);
+        window.draw(text);
         window.display();
+
+        if(player.getHp() < 1)
+        {
+            std::cout<<"Przegrales"<<std::endl;
+            window.close();
+        }
     }
 
     return 0;

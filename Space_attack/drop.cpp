@@ -12,3 +12,12 @@ void Drop::animate(const sf::Time &elapsed)
 {
     move(0,speed_y_*elapsed.asSeconds());
 }
+void Drop::setdrop_number(int s)
+{
+    drop_number_ = s;
+}
+
+int Drop::getdrop_number()
+{
+    return drop_number_;
+}

@@ -7,6 +7,12 @@ Enemy::Enemy(sf::Vector2f position,int hp)
 setPosition(position);
 hp_=hp;
 }
+
+Enemy::Enemy(sf::Vector2f position)
+{
+setPosition(position);
+}
+
 bool Enemy::colision(sf::FloatRect &bullet, int dmg)
 {
     if(getGlobalBounds().intersects(bullet))
@@ -64,4 +70,9 @@ bool Enemy::bound_collision(float left, float right)
     }
     return false;
 
+}
+
+void Enemy::setHp(int s)
+{
+    hp_ = s;
 }
