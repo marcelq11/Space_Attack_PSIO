@@ -9,15 +9,15 @@ public:
     Enemy(sf::Vector2f position,int hp);
     Enemy(sf::Vector2f position);
     bool colision(sf::FloatRect &bullet, int dmg);
+    bool bound_collision(float, float);
     void animate(const sf::Time &elapsed);
     void setSpeed(int speed_x);
-    bool bound_collision(float, float);
+    void setHp(int s);
     int getHp();
     int getRight();
     int getLeft();
     int getBottom();
     int getSpeed();
-    void setHp(int s);
 private:
     int hp_ = 2;
     int left_bound_ = 0;

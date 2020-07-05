@@ -51,6 +51,13 @@ void Player::setSpeed(int speed_x ,int speed_y)
     speed_x_=speed_x;
     speed_y_=speed_y;
 }
+
+void Player::setSpeed(float i)
+{
+    speed_x_*=i;
+    speed_y_*=i;
+}
+
 void Player::setShoot_fr(float fr)
 {
     shoot_fr_ = fr;
@@ -85,7 +92,7 @@ int Player::getHp()
 
 void Player::setHp(int i)
 {
-    hp_-=i;
+    hp_+=i;
 }
 
 int Player::getShoot_pattern()
@@ -106,5 +113,10 @@ void Player::setPoint(int i)
 int Player::getPoint()
 {
     return points_;
+}
+
+int Player::getSpeed()
+{
+    return speed_x_;
 }
 

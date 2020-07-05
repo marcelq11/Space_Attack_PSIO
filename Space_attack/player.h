@@ -9,20 +9,22 @@ class Player: public sf::Sprite
 public:
     Player(sf::Vector2f position, int hp);
     void animate(const sf::Time &elapsed);
+    bool collision(sf::FloatRect);
     void setBounds(int left, int right, int top , int bottom);
     void setSpeed(int speed_x ,int speed_y);
+    void setSpeed(float i);
     void setShoot_fr(float fr);
-    float getShoot_fr();
-    bool collision(sf::FloatRect);
+    void setHp(int i);
+    void setPoint(int i);
+    void iShoot_pattern(int i);
     int getRight();
     int getLeft();
     int getTop();
-    void iShoot_pattern(int i);
     int getShoot_pattern();
     int getHp();
-    void setHp(int i);
-    void setPoint(int i);
     int getPoint();
+    float getShoot_fr();
+    int getSpeed();
 
 
 
